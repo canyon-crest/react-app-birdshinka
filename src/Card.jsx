@@ -1,9 +1,18 @@
 import './Card.css'
+import { useState } from 'react'
 
 function Card({name,description}){
 
     const[count, setCount] = useState(0);
+    const[cart, setCart] = useState('is empty');
 
+    const inc = () =>{
+        setCount(count+1)
+        if({count}!=0)
+            setCart(`has ${count} items.`);
+        else
+            setCart('is empty');
+    }
 
     return(
         <div className='myCard'>
@@ -12,6 +21,7 @@ function Card({name,description}){
             <button onClick={() => setCount(count+1)}>Add {name} to cart</button>
             <button onClick={() => setCount(0)}>Reset</button>
             <p>total {name}: {count}</p>
+            <p>Your Cart {cart}</p>
         </div>
     )
 }
